@@ -8,7 +8,7 @@ public class UIManager : Singleton<UIManager>
 {
     public TextMeshProUGUI timer;
 
-    public static void SetTimer(int secondsLeft) {
-        Instance.timer.text = secondsLeft.ToString() + " seconds left";
+    public static void SetTimer(float secondsLeft) {
+        Instance.timer.text = secondsLeft.ToString("0.00") + " seconds left";
     }
 }
