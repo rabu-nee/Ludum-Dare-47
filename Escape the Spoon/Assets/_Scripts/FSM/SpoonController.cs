@@ -15,6 +15,7 @@ public class SpoonController : StatefulMonoBehaviour<SpoonController> {
     public bool cooldownActive;
 
     public Bowl bowl;
+    public float fluidDecrease = 0.1f;
 
     private void Start() {
         fsm = new FSM<SpoonController>();
@@ -43,6 +44,7 @@ public class SpoonController : StatefulMonoBehaviour<SpoonController> {
                 break;
         }
         Debug.Log("Change attack");
+        bowl.DecreaseFluidLevel(fluidDecrease);
         return randomAttack;
     }
 }

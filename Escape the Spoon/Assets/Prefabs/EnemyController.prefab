@@ -50,6 +50,7 @@ MonoBehaviour:
   minCoolDown: 1
   cooldownActive: 0
   bowl: {fileID: 0}
+  fluidDecrease: 0.1
 --- !u!95 &4968610147076867829
 Animator:
   serializedVersion: 3
@@ -103,7 +104,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: da69a50478f10d4498a8c584a9a9de65,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da69a50478f10d4498a8c584a9a9de65,
         type: 3}
