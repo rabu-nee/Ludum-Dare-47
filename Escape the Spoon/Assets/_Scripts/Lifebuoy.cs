@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lifebuoy : MonoBehaviour {
     [SerializeField]
-    private int bitesLeft = 5;
+    private int bitesLeft = 4;
     [SerializeField]
     private float speedBoostDuration = 5f;
 

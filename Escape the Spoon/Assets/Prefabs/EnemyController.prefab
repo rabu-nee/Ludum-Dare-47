@@ -44,13 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150329b9dc30ed4449645bebed29fff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  player: {fileID: 0}
+  spoonTipPos: {fileID: 3107347751515234519}
   animator: {fileID: 4968610147076867829}
   maxCooldown: 3
   minCoolDown: 1
   cooldownActive: 0
   bowl: {fileID: 0}
-  fluidDecrease: 0.1
+  fluidDecrease: 0.02
 --- !u!95 &4968610147076867829
 Animator:
   serializedVersion: 3
@@ -70,6 +71,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &3369439130186588848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3107347751515234519}
+  m_Layer: 0
+  m_Name: SpoonTip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3107347751515234519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369439130186588848}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 2.74, z: 0.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7421139390611045571}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &2400774206888999780
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -193,6 +224,12 @@ Transform:
 --- !u!1 &7004256990438555884 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7594236793293095110, guid: da69a50478f10d4498a8c584a9a9de65,
+    type: 3}
+  m_PrefabInstance: {fileID: 599041146698383402}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7421139390611045571 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7975055027407125737, guid: da69a50478f10d4498a8c584a9a9de65,
     type: 3}
   m_PrefabInstance: {fileID: 599041146698383402}
   m_PrefabAsset: {fileID: 0}
