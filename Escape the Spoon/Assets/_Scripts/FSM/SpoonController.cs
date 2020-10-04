@@ -5,7 +5,10 @@ using System.Linq;
 using UnityEngine;
 
 public class SpoonController : StatefulMonoBehaviour<SpoonController> {
-    public Transform Player;
+    public Transform
+        player,
+        spoonTipPos;
+    public LayerMask raycastLayer;
 
     public Animator animator;
     public enum SpoonStates { IDLE, SCOOP, SLOW, SPLASH };
@@ -43,8 +46,26 @@ public class SpoonController : StatefulMonoBehaviour<SpoonController> {
                 ChangeState(new SpoonSplash());
                 break;
         }
-        Debug.Log("Change attack");
         bowl.DecreaseFluidLevel(fluidDecrease);
         return randomAttack;
+    }
+
+    public bool IsPlayerOnSpoon() {
+        RaycastHit[] hits = Physics.SphereCastAll(spoonTipPos.position, 2f, Vector3.up);
+        Debug.Log("Checking if Player is on Spoon | detected collisions: " + hits.Length);
+        for (int i = 0; i<hits.Length; i++) {
+            if (hits[i].collider.CompareTag("Player")) {
+                return true;
+            }
+            else if (hits[i].collider.CompareTag("FruitLoop")) {
+                hits[i].collider.gameObject.SetActive(false);
+            }
+        }
+
+        return false;
+    }
+
+    private void OnDrawGizmosSelected() {
+        UnityEditor.Handles.DrawWireDisc(spoonTipPos.position, Vector3.up, 2f);
     }
 }

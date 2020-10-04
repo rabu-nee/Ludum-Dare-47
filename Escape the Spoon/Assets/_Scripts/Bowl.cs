@@ -34,7 +34,7 @@ public class Bowl : MonoBehaviour {
             GameObject go = ObjectPooler.SpawnFromPool("FRUITLOOP", spawnPos.position, Quaternion.identity);
             go.GetComponent<Rigidbody>().AddForce(Vector3.back * 4f, ForceMode.VelocityChange);
             fruitLoops[i] = go;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
@@ -46,6 +46,9 @@ public class Bowl : MonoBehaviour {
             fluidPlane.transform.position = new Vector3(0, fluidLevel, 0);
             pseudoGround.size = new Vector3(currentTopRadius * 2, 0.2f, currentTopRadius * 2);
             pseudoGround.transform.position = new Vector2(0, fluidLevel - pseudoGround.size.y - 0.5f);
+        }
+        else {
+            GameManager.TriggerGameEnd(Tools.EndState.VICTORY);
         }
     }
 

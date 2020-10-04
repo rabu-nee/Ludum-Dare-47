@@ -6,15 +6,12 @@ public class SpoonScoop : IFSMState<SpoonController> {
     private float timer;
 
     public void Enter(SpoonController entity) {
-        Debug.Log("Enter Scoop");
         entity.SetAnimation(SpoonController.SpoonStates.SCOOP);
         AnimatorStateInfo clip = entity.animator.GetCurrentAnimatorStateInfo(0);
-
-        timer = clip.length;
+        timer = clip.length + Tools.Constants.TIMER_TOLERANCE;
     }
 
     public void Exit(SpoonController entity) {
-        Debug.Log("Exit Scoop");
     }
 
     public void Reason(SpoonController entity) {
@@ -24,6 +21,8 @@ public class SpoonScoop : IFSMState<SpoonController> {
             timer -= Time.deltaTime;
         }
         else {
+            if (entity.IsPlayerOnSpoon())
+                GameManager.TriggerGameEnd(Tools.EndState.GAME_OVER);
             entity.RevertToIdle();
         }
     }
