@@ -36,6 +36,7 @@ public class Lifebuoy : MonoBehaviour {
         }
         else {
             bitesLeft--;
+            Puppet.Sound.SoundManager.Self.PlaySound("Bug_Eating");
             //change model
             if (bitesLeft == 0) {
                 model.SetActive(false);

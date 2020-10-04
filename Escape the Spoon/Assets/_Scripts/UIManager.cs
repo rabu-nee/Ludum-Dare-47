@@ -11,4 +11,8 @@ public class UIManager : Singleton<UIManager>
     public static void SetTimer(float secondsLeft) {
         Instance.timer.text = secondsLeft.ToString("0.00") + " seconds left";
     }
+
+    public static void DisplayEndGameMenu(Tools.EndState endState) {
+        Instance.timer.text = endState.ToString();
+    }
 }

@@ -15,6 +15,8 @@ public class Player : MonoBehaviour {
     private float verticalMovement;
     private float speedMultiplier = 1f;
 
+    private float soundTimer;
+
     private Coroutine DrownTimer;
 
     // Start is called before the first frame update
@@ -39,6 +41,17 @@ public class Player : MonoBehaviour {
     void Update() {
         horizontalMovement = Input.GetAxis("Horizontal");
         verticalMovement = Input.GetAxis("Vertical");
+
+        if (soundTimer <= 0) {
+            if (horizontalMovement > 0 || verticalMovement > 0) {
+                //play movement sounds
+                Puppet.Sound.SoundManager.Self.PlaySound("Bug_Swimming");
+                soundTimer = 0.3f;
+            }
+        }
+        else {
+            soundTimer -= Time.deltaTime;
+        }
 
         if (Input.GetButtonDown("Fire1")) {
             if (lifebuoy.GetBitesLeft() > 0) {
@@ -74,6 +87,7 @@ public class Player : MonoBehaviour {
 
     private void StartDrownTimer() {
         speedMultiplier = 0.5f;
+        Puppet.Sound.SoundManager.Self.PlaySound("Bug_Drowning");
         DrownTimer = StartCoroutine(SetTimer());
     }
 

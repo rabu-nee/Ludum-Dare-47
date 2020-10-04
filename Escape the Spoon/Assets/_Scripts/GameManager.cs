@@ -7,6 +7,7 @@ using Tools;
 public class GameManager : PersistentSingleton<GameManager>
 {
     public static void TriggerGameEnd(EndState endState) {
+        UIManager.DisplayEndGameMenu(endState);
         Debug.Log("GAME OVER");
     }
 }

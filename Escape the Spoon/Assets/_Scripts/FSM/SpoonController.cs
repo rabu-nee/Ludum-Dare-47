@@ -51,6 +51,9 @@ public class SpoonController : StatefulMonoBehaviour<SpoonController> {
         return randomAttack;
     }
 
+    public delegate void FruitLoopEaten();
+    public static FruitLoopEaten Eaten;
+
     public bool IsPlayerOnSpoon() {
         RaycastHit[] hits = Physics.SphereCastAll(spoonTipPos.position, 1f, Vector3.up);
         Debug.Log("Checking if Player is on Spoon | detected collisions: " + hits.Length);
@@ -60,6 +63,8 @@ public class SpoonController : StatefulMonoBehaviour<SpoonController> {
             }
             else if(hits[i].collider.CompareTag("FruitLoop")) {
                 hits[i].collider.gameObject.SetActive(false);
+                Eaten?.Invoke();
+                Puppet.Sound.SoundManager.Self.PlaySound("Human_Eating");
             }
         }
         return false;
