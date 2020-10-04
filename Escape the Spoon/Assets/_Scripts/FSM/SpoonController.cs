@@ -57,11 +57,7 @@ public class SpoonController : StatefulMonoBehaviour<SpoonController> {
             if (hits[i].collider.CompareTag("Player")) {
                 return true;
             }
-            else if (hits[i].collider.CompareTag("FruitLoop")) {
-                hits[i].collider.gameObject.SetActive(false);
-            }
         }
-
         return false;
     }
 

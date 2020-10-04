@@ -21,7 +21,7 @@ public class Bowl : MonoBehaviour {
     private float initFluidLevel;
     private float initTopRadius;
 
-    private IEnumerator Start() {
+    private void Start() {
         fruitLoops = new GameObject[maxFloatingFruitLoops];
         initFluidLevel = fluidLevel;
         initTopRadius = currentTopRadius;
@@ -29,13 +29,6 @@ public class Bowl : MonoBehaviour {
         fluidPlane.transform.position = new Vector3(0, fluidLevel, 0);
         pseudoGround.size = new Vector3(currentTopRadius * 2, 0.2f, currentTopRadius * 2);
         pseudoGround.transform.position = new Vector2(0, fluidLevel - pseudoGround.size.y - 0.5f);
-
-        for (int i = 0; i < maxFloatingFruitLoops; i++) {
-            GameObject go = ObjectPooler.SpawnFromPool("FRUITLOOP", spawnPos.position, Quaternion.identity);
-            go.GetComponent<Rigidbody>().AddForce(Vector3.back * 4f, ForceMode.VelocityChange);
-            fruitLoops[i] = go;
-            yield return new WaitForSeconds(0.25f);
-        }
     }
 
     public void DecreaseFluidLevel(float value) {
