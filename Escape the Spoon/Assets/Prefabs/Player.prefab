@@ -47,7 +47,7 @@ MonoBehaviour:
   bitesLeft: 5
   speedBoostDuration: 5
   speedBoost: 2
-  model: {fileID: 0}
+  model: {fileID: 1578128908}
 --- !u!1 &1578128908
 GameObject:
   m_ObjectHideFlags: 0
