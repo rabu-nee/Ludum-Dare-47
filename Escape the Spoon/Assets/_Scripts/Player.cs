@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     public float movementSpeed = 100f;
+    public float maxSwimTimeWithoutLifebuoy = 5f;
+
     [SerializeField]
     private Transform SpriteGroup;
     private Rigidbody rb;
@@ -39,6 +41,16 @@ public class Player : MonoBehaviour {
         yield return new WaitForSeconds(time);
         speedMultiplier = 1f;
         Debug.Log("Boost over");
+    }
+
+    private IEnumerator SetTimer() {
+        float timer = maxSwimTimeWithoutLifebuoy;
+        while(timer > 0) {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        //check if player found a lifebuoy
+        //if not, game over
     }
 
     private void FixedUpdate() {

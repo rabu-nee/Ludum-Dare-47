@@ -6,11 +6,11 @@ public class Lifebuoy : MonoBehaviour {
     [SerializeField]
     private int bitesLeft = 4;
     [SerializeField]
-    private float speedBoostDuration = 5f;
+    private float speedBoostDuration = 3f;
 
     [SerializeField]
     [Range(1f, 10f)]
-    private float speedBoost = 2f;
+    private float speedBoost = 1.5f;
 
     [SerializeField]
     private GameObject model;
