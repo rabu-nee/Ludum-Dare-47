@@ -50,11 +50,13 @@ public class Bowl : MonoBehaviour {
     private void OnEnable() {
         UIManager.StartG += GenerateFruitLoops;
         SpoonController.Eaten += CheckActiveFruitLoops;
+        Table.Dropped += CheckActiveFruitLoops;
     }
 
     private void OnDisable() {
         UIManager.StartG -= GenerateFruitLoops;
         SpoonController.Eaten -= CheckActiveFruitLoops;
+        Table.Dropped -= CheckActiveFruitLoops;
     }
 
     private void CheckActiveFruitLoops() {

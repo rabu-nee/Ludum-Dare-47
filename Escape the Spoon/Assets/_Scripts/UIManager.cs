@@ -42,14 +42,17 @@ public class UIManager : Singleton<UIManager>
     public static event StartGame StartG;
 
     public void OnStartGameBtn() {
+        Puppet.Sound.SoundManager.Self.PlaySound("Bug_Eating");
         StartG?.Invoke();
     }
 
     public void OnRestartBtn() {
+        Puppet.Sound.SoundManager.Self.PlaySound("Bug_Eating");
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     public void OnCreditsBtn(Transform box) {
+        Puppet.Sound.SoundManager.Self.PlaySound("Bug_Eating");
         Debug.Log("CREDITS");
         box.DORotate(new Vector3(0f, 180f, 0f), 1f, RotateMode.LocalAxisAdd);
     }
