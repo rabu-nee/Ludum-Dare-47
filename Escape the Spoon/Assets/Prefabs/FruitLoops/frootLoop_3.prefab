@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5388984120733810161}
   m_Layer: 0
   m_Name: frootLoop_3
-  m_TagString: Untagged
+  m_TagString: FruitLoop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class SpoonScoop : IFSMState<SpoonController> {
     private float timer;
 
     public void Enter(SpoonController entity) {
+        entity.transform.DOMove(entity.GetRandomPos(), 1f);
+
         entity.SetAnimation(SpoonController.SpoonStates.SCOOP);
         AnimatorStateInfo clip = entity.animator.GetCurrentAnimatorStateInfo(0);
         timer = clip.length + Tools.Constants.TIMER_TOLERANCE;

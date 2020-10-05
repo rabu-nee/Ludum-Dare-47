@@ -76,7 +76,7 @@ public class SpoonController : StatefulMonoBehaviour<SpoonController> {
     public Vector3 GetRandomPos() {
         float radius = bowl.GetInitTopRadius();
         Vector3 randomRadiusPos = (UnityEngine.Random.insideUnitCircle * radius);
-        randomRadiusPos.y = spoonTipPos.position.y;
-        return  randomRadiusPos;
+        randomRadiusPos.y = 0;
+        return randomRadiusPos;
     }
 }

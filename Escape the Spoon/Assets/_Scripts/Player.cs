@@ -64,7 +64,7 @@ public class Player : MonoBehaviour {
             else {
                 //no lifebuoy, searching for another
                 //casting ray
-                RaycastHit[] hit = Physics.RaycastAll(transform.position, transform.forward);
+                RaycastHit[] hit = Physics.SphereCastAll(transform.position,0.5f, transform.forward);
                 for (int i = 0; i < hit.Length; i++) {
                     if (hit[i].collider.CompareTag("FruitLoop")) {
                         //if success, set bites

@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class SpoonSplash : IFSMState<SpoonController> {
     private float timer;
 
     public void Enter(SpoonController entity) {
+        entity.transform.DOMove(entity.GetRandomPos(), 1f);
         entity.SetAnimation(SpoonController.SpoonStates.SPLASH);
         AnimatorStateInfo clip = entity.animator.GetCurrentAnimatorStateInfo(0);
 

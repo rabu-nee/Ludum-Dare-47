@@ -34,7 +34,7 @@ public class SpoonSlow : IFSMState<SpoonController> {
                 timer -= Time.deltaTime;
 
                 //follow Player
-                Vector3 desiredPosition = new Vector3(entity.player.position.x, entity.transform.position.y, entity.player.position.z);
+                Vector3 desiredPosition = new Vector3(entity.player.position.x, 0f, entity.player.position.z);
                 Vector3 smoothedPosition = Vector3.Lerp(entity.transform.position, desiredPosition, smoothSpeed);
                 entity.transform.position = smoothedPosition;
 
