@@ -328,16 +328,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7162187617718139076, guid: 267d0dfcd8703ae449845c0dbf1a8d7a,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 7162187617718139076, guid: 267d0dfcd8703ae449845c0dbf1a8d7a,
-        type: 3}
-      propertyPath: m_Height
-      value: 0.49
-      objectReference: {fileID: 0}
     - target: {fileID: 7162187617718139077, guid: 267d0dfcd8703ae449845c0dbf1a8d7a,
         type: 3}
       propertyPath: m_Name
@@ -397,21 +387,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7162187617718139082, guid: 267d0dfcd8703ae449845c0dbf1a8d7a,
-        type: 3}
-      propertyPath: movementSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7162187617718139082, guid: 267d0dfcd8703ae449845c0dbf1a8d7a,
-        type: 3}
-      propertyPath: lifebuoySearchRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7162187617718139083, guid: 267d0dfcd8703ae449845c0dbf1a8d7a,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 267d0dfcd8703ae449845c0dbf1a8d7a, type: 3}
