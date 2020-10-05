@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat.loops.green
+  m_Name: mat.loops.red
   m_Shader: {fileID: 4800000, guid: f8d49205b3b0a644195633020367689d, type: 3}
   m_ShaderKeywords: TCP2_DISABLE_WRAPPED_LIGHT TCP2_SPEC_TOON TCP2_STYLIZED_FRESNEL
     TCP2_UV_NORMALS_FULL _NORMALMAP
@@ -116,7 +116,7 @@ Material:
     - __dummy__: 0
     - __outline_gui_dummy__: 0
     m_Colors:
-    - _Color: {r: 0.80188674, g: 1, b: 0.495283, a: 1}
+    - _Color: {r: 1, g: 0.4198113, b: 0.43817127, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

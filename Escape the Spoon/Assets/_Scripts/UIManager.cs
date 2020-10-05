@@ -9,7 +9,9 @@ public class UIManager : Singleton<UIManager>
 {
     public TextMeshProUGUI timer;
     public GameObject
-        GameEndScreen;
+        GameEndScreen,
+        ImgGameOver,
+        ImgVictory;
 
     public void Start() {
         
@@ -20,8 +22,15 @@ public class UIManager : Singleton<UIManager>
     }
 
     public static void DisplayEndGameMenu(Tools.EndState endState) {
-        Instance.timer.text = endState.ToString();
         Instance.GameEndScreen.SetActive(true);
+        if (endState == Tools.EndState.GAME_OVER) {
+            Instance.ImgGameOver.SetActive(true);
+            Instance.ImgVictory.SetActive(false);
+        }
+        else {
+            Instance.ImgGameOver.SetActive(false);
+            Instance.ImgVictory.SetActive(true);
+        }
     }
 
 

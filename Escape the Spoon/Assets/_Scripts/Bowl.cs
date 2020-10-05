@@ -14,7 +14,7 @@ public class Bowl : MonoBehaviour {
     public Transform spawnPos;
     public int maxFloatingFruitLoops = 50;
 
-    public float fluidOffset = 0.3f;
+    public float fluidGroundOffset = 0.3f;
     public Transform fluidPlane;
     public BoxCollider pseudoGround;
 
@@ -78,8 +78,8 @@ public class Bowl : MonoBehaviour {
             currentTopRadius = fluidLevel / initFluidLevel * initTopRadius;
             fluidPlane.localScale = new Vector3(1 / initTopRadius * currentTopRadius, 1f, 1 / initTopRadius * currentTopRadius);
             fluidPlane.transform.position = new Vector3(0, fluidLevel, 0);
-            pseudoGround.size = new Vector3((currentTopRadius + 0.3f) * 2, 0.2f, (currentTopRadius + 0.3f) * 2);
-            pseudoGround.transform.position = new Vector2(0, fluidLevel - pseudoGround.size.y - fluidOffset);
+            pseudoGround.size = new Vector3((currentTopRadius + 0.3f) * 2, 1f, (currentTopRadius + 0.3f) * 2);
+            pseudoGround.transform.position = new Vector2(0, fluidLevel - pseudoGround.size.y - fluidGroundOffset);
         }
         else {
             GameManager.TriggerGameEnd(Tools.EndState.VICTORY);

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
+using Tools;
 
 public class Player : MonoBehaviour {
     public float movementSpeed = 5f;
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour {
     private float soundTimer;
 
     private Coroutine DrownTimer;
+    private bool canMove;
 
     // Start is called before the first frame update
     void Start() {
@@ -29,14 +32,28 @@ public class Player : MonoBehaviour {
     private void OnEnable() {
         if (lifebuoy != null)
             lifebuoy.Drown += StartDrownTimer;
+        UIManager.StartG += EnableMovement;
+        GameManager.End += DisableMovement;
     }
 
     private void OnDisable() {
         lifebuoy.Drown -= StartDrownTimer;
+        UIManager.StartG -= EnableMovement;
+        GameManager.End -= DisableMovement;
+    }
+
+    private void DisableMovement(EndState endState) {
+        canMove = false;
+    }
+
+    private void EnableMovement() {
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update() {
+        if (!canMove) return;
+
         horizontalMovement = Input.GetAxis("Horizontal");
         verticalMovement = Input.GetAxis("Vertical");
 
