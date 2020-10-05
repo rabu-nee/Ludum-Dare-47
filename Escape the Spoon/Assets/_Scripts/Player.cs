@@ -92,6 +92,8 @@ public class Player : MonoBehaviour {
                         speedMultiplier = 1f;
                         lifebuoy.ResetBites(hit[i].collider.gameObject);
                         StopCoroutine(DrownTimer);
+                        UIManager.HideTimer();
+
                         break;
                     }
                 }

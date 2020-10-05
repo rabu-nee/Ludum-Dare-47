@@ -788,6 +788,11 @@ PrefabInstance:
       propertyPath: Sounds.Array.data[4].source
       value: 
       objectReference: {fileID: 888578224}
+    - target: {fileID: 80566190219778002, guid: f1a9f921610b81d479135996b6ba4dbe,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 258
+      objectReference: {fileID: 0}
     - target: {fileID: 2359868573479824305, guid: f1a9f921610b81d479135996b6ba4dbe,
         type: 3}
       propertyPath: m_Name
