@@ -1160,6 +1160,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bowl
       objectReference: {fileID: 0}
+    - target: {fileID: 7860485944398161393, guid: dfb28640fee2e314081e976ed123b6d9,
+        type: 3}
+      propertyPath: fluidGroundOffset
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfb28640fee2e314081e976ed123b6d9, type: 3}
 --- !u!4 &1111355349 stripped
