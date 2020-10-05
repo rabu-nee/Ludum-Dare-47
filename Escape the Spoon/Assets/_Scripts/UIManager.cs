@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Singleton;
 using TMPro;
+using DG.Tweening;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -35,7 +36,13 @@ public class UIManager : Singleton<UIManager>
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
-    public void OnCreditsBtn() {
+    public void OnCreditsBtn(Transform box) {
         Debug.Log("CREDITS");
+        box.DORotate(new Vector3(0f, 180f, 0f), 1f, RotateMode.LocalAxisAdd);
+    }
+
+    public void OnBackBtn(Transform box) {
+        Debug.Log("CREDITS");
+        box.DORotate(new Vector3(0f, -180f, 0f), 1f, RotateMode.LocalAxisAdd);
     }
 }

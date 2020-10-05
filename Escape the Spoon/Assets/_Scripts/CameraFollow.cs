@@ -6,6 +6,11 @@ public class CameraFollow : MonoBehaviour {
 
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
+    public Vector3 rotation;
+
+    public void Start() {
+        transform.rotation = Quaternion.Euler(rotation);
+    }
 
     void FixedUpdate() {
         Vector3 desiredPosition = target.position + offset;

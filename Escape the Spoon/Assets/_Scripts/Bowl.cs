@@ -39,7 +39,7 @@ public class Bowl : MonoBehaviour {
     private IEnumerator GenerateFruitLoopsRoutine() {
         for (int i = 0; i < maxFloatingFruitLoops; i++) {
             GameObject go = ObjectPooler.SpawnFromPool("FRUITLOOP", spawnPos.position, Quaternion.identity);
-            go.GetComponent<Rigidbody>().AddForce(Vector3.back * 8f, ForceMode.VelocityChange);
+            go.GetComponent<Rigidbody>().AddForce(spawnPos.forward * -8f, ForceMode.VelocityChange);
             fruitLoops[i] = go;
             yield return new WaitForSeconds(0.25f);
         }
@@ -77,7 +77,7 @@ public class Bowl : MonoBehaviour {
             fluidPlane.localScale = new Vector3(1 / initTopRadius * currentTopRadius, 1f, 1 / initTopRadius * currentTopRadius);
             fluidPlane.transform.position = new Vector3(0, fluidLevel, 0);
             pseudoGround.size = new Vector3((currentTopRadius + 0.3f) * 2, 0.2f, (currentTopRadius + 0.3f) * 2);
-            pseudoGround.transform.position = new Vector2(0, fluidLevel - pseudoGround.size.y);
+            pseudoGround.transform.position = new Vector2(0, fluidLevel - pseudoGround.size.y -0.3f);
         }
         else {
             GameManager.TriggerGameEnd(Tools.EndState.VICTORY);
