@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Player : MonoBehaviour {
     public float movementSpeed = 5f;
@@ -103,6 +104,7 @@ public class Player : MonoBehaviour {
         //check if player found a lifebuoy
         if (lifebuoy.GetBitesLeft() <= 0) {
             GameManager.TriggerGameEnd(Tools.EndState.GAME_OVER);
+            transform.DOMoveY(1f, 1f);
         }
     }
 
