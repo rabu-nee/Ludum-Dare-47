@@ -70,6 +70,7 @@ public class Player : MonoBehaviour {
                     if (hit[i].collider.CompareTag("FruitLoop")) {
                         //if success, set bites
                         hit[i].collider.gameObject.SetActive(false);
+                        speedMultiplier = 1f;
                         lifebuoy.ResetBites();
                         StopCoroutine(DrownTimer);
                         break;
