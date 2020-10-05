@@ -122,11 +122,14 @@ public class Player : MonoBehaviour {
         if (lifebuoy.GetBitesLeft() <= 0) {
             GameManager.TriggerGameEnd(Tools.EndState.GAME_OVER);
             transform.DOMoveY(1f, 1f);
+            UIManager.HideTimer();
         }
     }
 
     private void FixedUpdate() {
         if (horizontalMovement != 0 || verticalMovement != 0)
-            rb.MovePosition(transform.position + Vector3.Normalize(new Vector3(horizontalMovement, 0, verticalMovement)) * movementSpeed * speedMultiplier * Time.deltaTime);
+            //rb.velocity =  Vector3.Normalize(new Vector3(horizontalMovement, rb.velocity.y, verticalMovement)) * movementSpeed * speedMultiplier * Time.deltaTime;
+            rb.AddForce(Vector3.Normalize(new Vector3(horizontalMovement, 0, verticalMovement)) * movementSpeed * speedMultiplier, ForceMode.Impulse);
+            //rb.MovePosition(transform.position + Vector3.Normalize(new Vector3(horizontalMovement, 0, verticalMovement)) * movementSpeed * speedMultiplier * Time.deltaTime);
     }
 }

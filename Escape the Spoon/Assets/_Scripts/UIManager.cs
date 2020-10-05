@@ -21,6 +21,10 @@ public class UIManager : Singleton<UIManager>
         Instance.timer.text = secondsLeft.ToString("0.00") + " seconds left";
     }
 
+    public static void HideTimer() {
+        Instance.timer.text = string.Empty;
+    }
+
     public static void DisplayEndGameMenu(Tools.EndState endState) {
         Instance.GameEndScreen.SetActive(true);
         if (endState == Tools.EndState.GAME_OVER) {
