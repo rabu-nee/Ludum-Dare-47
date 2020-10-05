@@ -10,6 +10,7 @@ public class Bowl : MonoBehaviour {
     //height of the fluid
     public float fluidLevel;
 
+    public float fruitLoopsForce = 8f;
     public Transform spawnPos;
     public int maxFloatingFruitLoops = 50;
 
@@ -39,7 +40,7 @@ public class Bowl : MonoBehaviour {
     private IEnumerator GenerateFruitLoopsRoutine() {
         for (int i = 0; i < maxFloatingFruitLoops; i++) {
             GameObject go = ObjectPooler.SpawnFromPool("FRUITLOOP", spawnPos.position, Quaternion.identity);
-            go.GetComponent<Rigidbody>().AddForce(spawnPos.forward * -8f, ForceMode.VelocityChange);
+            go.GetComponent<Rigidbody>().AddForce(spawnPos.forward * -fruitLoopsForce, ForceMode.VelocityChange);
             fruitLoops[i] = go;
             yield return new WaitForSeconds(0.25f);
         }
