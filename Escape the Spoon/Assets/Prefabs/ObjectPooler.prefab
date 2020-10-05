@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: FRUITLOOP
-    prefab: {fileID: 6496559279824470709, guid: 12aa5cb3868f8af49a33f54c0dbbefb9,
-      type: 3}
+  - tag: FRUITLOOP_1
+    prefab:
+    - {fileID: 6496559279824470709, guid: 12aa5cb3868f8af49a33f54c0dbbefb9, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     size: 50

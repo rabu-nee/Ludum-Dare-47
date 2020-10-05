@@ -8,7 +8,6 @@ public class SpoonController : StatefulMonoBehaviour<SpoonController> {
     public Transform
         player,
         spoonTipPos;
-    public LayerMask raycastLayer;
 
     public Animator animator;
     public enum SpoonStates { IDLE, SCOOP, SLOW, SPLASH };
@@ -72,5 +71,12 @@ public class SpoonController : StatefulMonoBehaviour<SpoonController> {
 
     private void OnDrawGizmosSelected() {
         UnityEditor.Handles.DrawWireDisc(spoonTipPos.position, Vector3.up, spoonTipRadius);
+    }
+
+    public Vector3 GetRandomPos() {
+        float radius = bowl.GetInitTopRadius();
+        Vector3 randomRadiusPos = (UnityEngine.Random.insideUnitCircle * radius);
+        randomRadiusPos.y = spoonTipPos.position.y;
+        return  randomRadiusPos;
     }
 }

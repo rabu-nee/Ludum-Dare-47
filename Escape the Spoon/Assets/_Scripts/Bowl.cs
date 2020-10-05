@@ -19,26 +19,24 @@ public class Bowl : MonoBehaviour {
     [SerializeField]
     private Transform fruitLoopsContainer;
     [SerializeField]
-    private List<Transform> fruitLoops;
+    private GameObject[] fruitLoops;
 
     private float initFluidLevel;
     private float initTopRadius;
 
-    private void Start() {
-        Transform[] temp = fruitLoopsContainer.GetComponentsInChildren<Transform>();
-        fruitLoops = new List<Transform>();
-        //filter out the root
-        for (int i = 0; i < temp.Length-1; i++) {
-            if (!temp[i].Equals(fruitLoopsContainer))
-                fruitLoops.Add(temp[i]);
-        }
-
+    private IEnumerator Start() {
+        fruitLoops = new GameObject[maxFloatingFruitLoops];
         initFluidLevel = fluidLevel;
         initTopRadius = currentTopRadius;
-        fluidPlane.localScale = new Vector3(currentTopRadius*2, 0.1f, currentTopRadius*2);
-        fluidPlane.transform.position = new Vector3(0, fluidLevel, 0);
-        pseudoGround.size = new Vector3(currentTopRadius * 2, 0.2f, currentTopRadius * 2);
-        pseudoGround.transform.position = new Vector2(0, fluidLevel - pseudoGround.size.y - 0.5f);
+
+        DecreaseFluidLevel(0f);
+
+        for (int i = 0; i < maxFloatingFruitLoops; i++) {
+            GameObject go = ObjectPooler.SpawnFromPool("FRUITLOOP", spawnPos.position, Quaternion.identity);
+            go.GetComponent<Rigidbody>().AddForce(Vector3.back * 8f, ForceMode.VelocityChange);
+            fruitLoops[i] = go;
+            yield return new WaitForSeconds(0.25f);
+        }
     }
 
     private void OnEnable() {
@@ -51,11 +49,11 @@ public class Bowl : MonoBehaviour {
 
     private void CheckActiveFruitLoops() {
         Debug.Log("Checking activity state");
-        for(int i = 0; i<fruitLoops.Count; i++) {
-            Debug.Log(fruitLoops[i].gameObject + " is " + fruitLoops[i].gameObject.activeSelf);
+        for (int i = 0; i < fruitLoops.Length; i++) {
+            Debug.Log(fruitLoops[i] + " is " + fruitLoops[i].activeSelf);
 
-            if (fruitLoops[i].gameObject.activeSelf) {
-                Debug.Log(fruitLoops[i].gameObject + " is " + fruitLoops[i].gameObject.activeSelf);
+            if (fruitLoops[i].activeSelf) {
+                Debug.Log(fruitLoops[i] + " is " + fruitLoops[i].activeSelf);
                 return;
             }
         }
@@ -68,14 +66,18 @@ public class Bowl : MonoBehaviour {
         fluidLevel = Mathf.Clamp(fluidLevel - value, 0, initFluidLevel);
         if (fluidLevel > 0) {
             currentTopRadius = fluidLevel / initFluidLevel * initTopRadius;
-            fluidPlane.localScale = new Vector3(currentTopRadius * 2, 0.1f, currentTopRadius * 2);
+            fluidPlane.localScale = new Vector3(1 / initTopRadius * currentTopRadius, 1f, 1 / initTopRadius * currentTopRadius);
             fluidPlane.transform.position = new Vector3(0, fluidLevel, 0);
-            pseudoGround.size = new Vector3(currentTopRadius * 2, 0.2f, currentTopRadius * 2);
-            pseudoGround.transform.position = new Vector2(0, fluidLevel - pseudoGround.size.y - 0.5f);
+            pseudoGround.size = new Vector3((currentTopRadius + 0.3f) * 2, 0.2f, (currentTopRadius + 0.3f) * 2);
+            pseudoGround.transform.position = new Vector2(0, fluidLevel - pseudoGround.size.y);
         }
         else {
             GameManager.TriggerGameEnd(Tools.EndState.VICTORY);
         }
+    }
+
+    public float GetInitTopRadius() {
+        return initTopRadius;
     }
 
     private void OnDrawGizmosSelected() {
