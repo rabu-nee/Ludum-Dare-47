@@ -23,14 +23,19 @@ public class SpoonController : StatefulMonoBehaviour<SpoonController> {
 
     private void Start() {
         fsm = new FSM<SpoonController>();
+    }
+
+    private void StartGame() {
         fsm.Configure(this, new SpoonIdle());
     }
 
     private void OnEnable() {
+        UIManager.StartG += StartGame;
         GameManager.End += OnGameEnd;
     }
 
     private void OnDisable() {
+        UIManager.StartG -= StartGame;
         GameManager.End -= OnGameEnd;
     }
 
@@ -82,9 +87,11 @@ public class SpoonController : StatefulMonoBehaviour<SpoonController> {
         return false;
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected() {
         UnityEditor.Handles.DrawWireDisc(spoonTipPos.position, Vector3.up, spoonTipRadius);
     }
+#endif
 
     public Vector3 GetRandomPos() {
         float radius = bowl.GetInitTopRadius();

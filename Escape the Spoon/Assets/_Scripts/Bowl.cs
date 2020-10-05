@@ -24,13 +24,19 @@ public class Bowl : MonoBehaviour {
     private float initFluidLevel;
     private float initTopRadius;
 
-    private IEnumerator Start() {
+    private void Start() {
         fruitLoops = new GameObject[maxFloatingFruitLoops];
         initFluidLevel = fluidLevel;
         initTopRadius = currentTopRadius;
 
         DecreaseFluidLevel(0f);
+    }
 
+    private void GenerateFruitLoops() {
+        StartCoroutine(GenerateFruitLoopsRoutine());
+    }
+
+    private IEnumerator GenerateFruitLoopsRoutine() {
         for (int i = 0; i < maxFloatingFruitLoops; i++) {
             GameObject go = ObjectPooler.SpawnFromPool("FRUITLOOP", spawnPos.position, Quaternion.identity);
             go.GetComponent<Rigidbody>().AddForce(Vector3.back * 8f, ForceMode.VelocityChange);
@@ -40,10 +46,12 @@ public class Bowl : MonoBehaviour {
     }
 
     private void OnEnable() {
+        UIManager.StartG += GenerateFruitLoops;
         SpoonController.Eaten += CheckActiveFruitLoops;
     }
 
     private void OnDisable() {
+        UIManager.StartG -= GenerateFruitLoops;
         SpoonController.Eaten -= CheckActiveFruitLoops;
     }
 
@@ -80,7 +88,9 @@ public class Bowl : MonoBehaviour {
         return initTopRadius;
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected() {
         UnityEditor.Handles.DrawWireDisc(new Vector3(transform.position.x, fluidLevel, transform.position.z), Vector3.up, currentTopRadius);
     }
+#endif
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using Singleton;
 using Tools;
 
-public class GameManager : PersistentSingleton<GameManager>
+public class GameManager : Singleton<GameManager>
 {
     public delegate void GameEnd(EndState endState);
     public static event GameEnd End;
