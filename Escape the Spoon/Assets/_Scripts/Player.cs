@@ -6,13 +6,12 @@ public class Player : MonoBehaviour {
     public float movementSpeed = 5f;
     public float maxSwimTimeWithoutLifebuoy = 10f;
 
-    [SerializeField]
-    private Transform SpriteGroup;
     private Rigidbody rb;
     private Lifebuoy lifebuoy;
 
     private float horizontalMovement;
     private float verticalMovement;
+    [SerializeField]
     private float speedMultiplier = 1f;
 
     private float soundTimer;
@@ -24,8 +23,6 @@ public class Player : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         lifebuoy = GetComponentInChildren<Lifebuoy>();
         lifebuoy.Drown += StartDrownTimer;
-
-        SpriteGroup.LookAt(Camera.main.transform);
     }
 
     private void OnEnable() {
@@ -42,21 +39,25 @@ public class Player : MonoBehaviour {
         horizontalMovement = Input.GetAxis("Horizontal");
         verticalMovement = Input.GetAxis("Vertical");
 
-        if (soundTimer <= 0) {
-            if (horizontalMovement > 0 || verticalMovement > 0) {
+        if (horizontalMovement != 0 || verticalMovement != 0) {
+            float angle = Mathf.Atan2(horizontalMovement, verticalMovement);
+            transform.rotation = Quaternion.EulerAngles(0, angle, 0);
+
+            if (soundTimer <= 0) {
+
                 //play movement sounds
                 Puppet.Sound.SoundManager.Self.PlaySound("Bug_Swimming");
                 soundTimer = 0.3f;
             }
-        }
-        else {
-            soundTimer -= Time.deltaTime;
+            else {
+                soundTimer -= Time.deltaTime;
+            }
         }
 
         if (Input.GetButtonDown("Fire1")) {
             if (lifebuoy.GetBitesLeft() > 0) {
                 Vector2 boost = lifebuoy.GetSpeedBoost();
-                if (boost.x != 1) {
+                if (boost.x != 1 && speedMultiplier == 1f) {
                     speedMultiplier = boost.x;
                     StartCoroutine(RevertSpeedboostAfterTime(boost.y));
                 }
@@ -64,7 +65,7 @@ public class Player : MonoBehaviour {
             else {
                 //no lifebuoy, searching for another
                 //casting ray
-                RaycastHit[] hit = Physics.SphereCastAll(transform.position,0.5f, transform.forward);
+                RaycastHit[] hit = Physics.SphereCastAll(transform.position, 0.1f, transform.forward);
                 for (int i = 0; i < hit.Length; i++) {
                     if (hit[i].collider.CompareTag("FruitLoop")) {
                         //if success, set bites
@@ -105,6 +106,7 @@ public class Player : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        rb.MovePosition(transform.position + Vector3.Normalize(new Vector3(horizontalMovement, 0, verticalMovement)) * movementSpeed * speedMultiplier * Time.deltaTime);
+        if (horizontalMovement != 0 || verticalMovement != 0)
+            rb.MovePosition(transform.position + Vector3.Normalize(new Vector3(horizontalMovement, 0, verticalMovement)) * movementSpeed * speedMultiplier * Time.deltaTime);
     }
 }

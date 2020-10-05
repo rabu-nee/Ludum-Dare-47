@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Lifebuoy : MonoBehaviour {
-    public int maxBites = 4;
+    private int maxBites;
     private int bitesLeft;
     [SerializeField]
     private float speedBoostDuration = 3f;
@@ -11,11 +11,13 @@ public class Lifebuoy : MonoBehaviour {
     [Range(1f, 10f)]
     private float speedBoost = 1.5f;
 
-    [SerializeField]
-    private GameObject model;
+    [Tooltip("from smallest to biggest")]
+    public GameObject[] lifebuoyStates;
 
     private void Start() {
+        maxBites = lifebuoyStates.Length;
         bitesLeft = maxBites;
+        SetLifebuoy(bitesLeft);
     }
 
     public delegate void DrownPlayer();
@@ -27,7 +29,8 @@ public class Lifebuoy : MonoBehaviour {
 
     public void ResetBites() {
         bitesLeft = maxBites;
-        model.SetActive(true);
+        lifebuoyStates[maxBites-1].SetActive(true);
+        SetLifebuoy(bitesLeft);
     }
 
     public Vector2 GetSpeedBoost() {
@@ -36,13 +39,21 @@ public class Lifebuoy : MonoBehaviour {
         }
         else {
             bitesLeft--;
+            SetLifebuoy(bitesLeft);
             Puppet.Sound.SoundManager.Self.PlaySound("Bug_Eating");
             //change model
             if (bitesLeft == 0) {
-                model.SetActive(false);
                 Drown?.Invoke();
             }
             return new Vector2(speedBoost, speedBoostDuration);
         }
+    }
+
+    private void SetLifebuoy(int bitesLeft) {
+        foreach (GameObject go in lifebuoyStates) {
+            go.SetActive(false);
+        }
+        if (bitesLeft > 0)
+            lifebuoyStates[bitesLeft-1].SetActive(true);
     }
 }

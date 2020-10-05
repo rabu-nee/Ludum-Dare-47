@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Tools;
 using UnityEngine;
 
 public class SpoonController : StatefulMonoBehaviour<SpoonController> {
@@ -23,6 +24,18 @@ public class SpoonController : StatefulMonoBehaviour<SpoonController> {
     private void Start() {
         fsm = new FSM<SpoonController>();
         fsm.Configure(this, new SpoonIdle());
+    }
+
+    private void OnEnable() {
+        GameManager.End += OnGameEnd;
+    }
+
+    private void OnDisable() {
+        GameManager.End -= OnGameEnd;
+    }
+
+    private void OnGameEnd(EndState endState) {
+        this.enabled = false;
     }
 
     public void SetAnimation(SpoonStates state) {
