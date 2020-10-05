@@ -8,6 +8,7 @@ using Tools;
 public class Player : MonoBehaviour {
     public float movementSpeed = 5f;
     public float maxSwimTimeWithoutLifebuoy = 10f;
+    public float lifebuoySearchRange = 0.1f;
 
     private Rigidbody rb;
     private Lifebuoy lifebuoy;
@@ -83,13 +84,13 @@ public class Player : MonoBehaviour {
             else {
                 //no lifebuoy, searching for another
                 //casting ray
-                RaycastHit[] hit = Physics.SphereCastAll(transform.position, 0.1f, transform.forward);
+                RaycastHit[] hit = Physics.SphereCastAll(transform.position, lifebuoySearchRange, Vector3.up);
                 for (int i = 0; i < hit.Length; i++) {
                     if (hit[i].collider.CompareTag("FruitLoop")) {
                         //if success, set bites
                         hit[i].collider.gameObject.SetActive(false);
                         speedMultiplier = 1f;
-                        lifebuoy.ResetBites();
+                        lifebuoy.ResetBites(hit[i].collider.gameObject);
                         StopCoroutine(DrownTimer);
                         break;
                     }
@@ -132,4 +133,10 @@ public class Player : MonoBehaviour {
             rb.AddForce(Vector3.Normalize(new Vector3(horizontalMovement, 0, verticalMovement)) * movementSpeed * speedMultiplier, ForceMode.Impulse);
             //rb.MovePosition(transform.position + Vector3.Normalize(new Vector3(horizontalMovement, 0, verticalMovement)) * movementSpeed * speedMultiplier * Time.deltaTime);
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected() {
+        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.up, lifebuoySearchRange);
+    }
+#endif
 }

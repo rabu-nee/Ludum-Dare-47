@@ -27,7 +27,12 @@ public class Lifebuoy : MonoBehaviour {
         return bitesLeft;
     }
 
-    public void ResetBites() {
+    public void ResetBites(GameObject fruitLoop) {
+        Material mat = fruitLoop.GetComponent<MeshRenderer>().material;
+        foreach(GameObject go in lifebuoyStates) {
+            go.GetComponent<MeshRenderer>().material = mat;
+        }
+
         bitesLeft = maxBites;
         lifebuoyStates[maxBites-1].SetActive(true);
         SetLifebuoy(bitesLeft);

@@ -403,6 +403,11 @@ PrefabInstance:
       propertyPath: movementSpeed
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 7162187617718139082, guid: 267d0dfcd8703ae449845c0dbf1a8d7a,
+        type: 3}
+      propertyPath: lifebuoySearchRange
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7162187617718139083, guid: 267d0dfcd8703ae449845c0dbf1a8d7a,
         type: 3}
       propertyPath: m_Mass
