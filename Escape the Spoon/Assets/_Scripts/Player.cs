@@ -131,9 +131,17 @@ public class Player : MonoBehaviour {
 
     private void FixedUpdate() {
         if (horizontalMovement != 0 || verticalMovement != 0)
+        {
             //rb.velocity =  Vector3.Normalize(new Vector3(horizontalMovement, rb.velocity.y, verticalMovement)) * movementSpeed * speedMultiplier * Time.deltaTime;
-            rb.AddForce(Vector3.Normalize(new Vector3(horizontalMovement, 0, verticalMovement)) * movementSpeed * speedMultiplier, ForceMode.Impulse);
+            var targetVelocity = Vector3.Normalize(new Vector3(horizontalMovement, 0, verticalMovement));
+            targetVelocity *= movementSpeed * speedMultiplier;
+            var velocity = rb.velocity;
+            var velocityChange = (targetVelocity - velocity);
+            rb.AddForce(velocityChange, ForceMode.VelocityChange);
+            //rb.AddForce(Vector3.Normalize(new Vector3(horizontalMovement, 0, verticalMovement)) * movementSpeed * speedMultiplier, ForceMode.Impulse);
             //rb.MovePosition(transform.position + Vector3.Normalize(new Vector3(horizontalMovement, 0, verticalMovement)) * movementSpeed * speedMultiplier * Time.deltaTime);
+        }
+            
     }
 
 #if UNITY_EDITOR

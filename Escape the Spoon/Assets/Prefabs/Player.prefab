@@ -42,7 +42,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -223,7 +223,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -350,7 +350,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3e7b1eb9f58932a4ca2b07bf35b5ee05, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32e9be6779c6f74abf8bb8f8502bc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
+  movementSpeed: 4
   maxSwimTimeWithoutLifebuoy: 5
   lifebuoySearchRange: 1
   speedMultiplier: 1
@@ -543,13 +543,13 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7162187617718139077}
-  m_Material: {fileID: 13400000, guid: 44cdd286f3a25ec4fbdb82be012e60fd, type: 2}
+  m_Material: {fileID: 13400000, guid: 0936d8538729e0143959d625cacc8aaf, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.85
   m_Height: 0.49
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!1001 &778146678391052099
 PrefabInstance:
   m_ObjectHideFlags: 0
