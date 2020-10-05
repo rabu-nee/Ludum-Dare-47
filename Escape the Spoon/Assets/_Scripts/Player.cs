@@ -110,7 +110,6 @@ public class Player : MonoBehaviour {
 
     private void StartDrownTimer() {
         speedMultiplier = 0.5f;
-        Puppet.Sound.SoundManager.Self.PlaySound("Bug_Drowning");
         DrownTimer = StartCoroutine(SetTimer());
     }
 
@@ -123,6 +122,7 @@ public class Player : MonoBehaviour {
         }
         //check if player found a lifebuoy
         if (lifebuoy.GetBitesLeft() <= 0) {
+            Puppet.Sound.SoundManager.Self.PlaySound("Bug_Drowning");
             GameManager.TriggerGameEnd(Tools.EndState.GAME_OVER);
             transform.DOMoveY(1f, 1f);
             UIManager.HideTimer();
